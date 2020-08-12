@@ -112,3 +112,4 @@ function createOrEditGoal() {
     submitButton.value = "Submit"
   });
 }
+document.addEventListener("DOMContentLoaded", function () {createOrEditGoal()})
