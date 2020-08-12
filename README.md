@@ -21,7 +21,6 @@ This project was designed to enable a user to create, edit, and delete vision bo
 ![Alt text](https://github.com/mathewpwheatley/module-3-project-vision-board/raw/master/ReadmeImg/NewGoal.png)
 
 * View all boards and related goals
-![Board With Goals Screen](ReadmeImg/BoardWithGoals.png)
 
 ![Alt text](https://github.com/mathewpwheatley/module-3-project-vision-board/raw/master/ReadmeImg/BoardWithGoals.png)
 
@@ -44,7 +43,7 @@ Google Chrome (80.0.3987.149)
 Download this entire git repository to your computer and place in your desired install directory. If you don't have the above dependencies, in your terminal run ``ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`` to install Homebrew, then run ``brew install rbenv ruby-build`` to install Ruby, then ``rbenv install 2.7.1`` ``rbenv global 2.7.1`` and ``ruby -v`` to confirm. Finally, to install Rails, run ``gem install rails -v 6.0.2.2`` ``rbenv rehash`` and ``rails -v`` to confirm. Now, via a terminal interface navigate to install_directory/backend. From this location execute ``bundle install`` to install all other required ruby gems. This should allow you to explore all functionality of the application.
 
 # Running:
-This project was designed as a proof of concept so it requires hosting locally. To start hosting the local server navigate to install_directory/backend via a terminal interface and then execute rails s. Next, from your Google Chrome browser navigate to your install_directory/frontend/index.html. At this point the application will load and all functionality will be available.
+To start hosting the local server navigate to install_directory/backend via a terminal interface and then execute rails s. Next, from your Google Chrome browser navigate to your install_directory/frontend/index.html. At this point the application will load and all functionality will be available.
 
 # License:
 
