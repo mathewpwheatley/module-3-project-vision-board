@@ -626,6 +626,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // User Functions: End //
   /////////////////////////
 
-  // createOrEditGoal()
+  createOrEditGoal()
 });
 
