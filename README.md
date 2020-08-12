@@ -25,7 +25,7 @@ This project was designed to enable a user to create, edit, and delete vision bo
 ![Alt text](https://github.com/mathewpwheatley/module-3-project-vision-board/raw/master/ReadmeImg/BoardWithGoals.png)
 
 
-The backend of the application leverages Ruby on Rails API functionality to receive and send AJAX requests in a JSON formate. The interactive frontend is build on vanilla HTML and Javascript.
+The backend of the application leverages Ruby on Rails API functionality to receive and send AJAX requests in a JSON format. The interactive frontend is build on vanilla HTML and Javascript.
 
 # Team:
 * Colton Kaiser
