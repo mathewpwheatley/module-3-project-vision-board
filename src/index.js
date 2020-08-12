@@ -159,7 +159,7 @@ function confirmUserSignup() {
 }
 
 function changeNavbar(currentUser){
-let currentUserUrl = `http://localhost:3000/users/${JSON.parse(localStorage.user).id}`
+let currentUserUrl = `${USERS_URL}/${JSON.parse(localStorage.user).id}`
 
 fetch(currentUserUrl)
 .then(resp => resp.json())
