@@ -42,7 +42,7 @@ Download this entire git repository to your computer and place in your desired i
 # Running:
 This project is hosted on Github Pages here: https://ckaiser258.github.io/visionboard/. If you'd like to view it locally:
 1. Make sure you've installed the backend repo for this application (located here: https://github.com/ckaiser258/visionboard-backend) and have followed the installation/running instructions. 
-2. Next, from your Google Chrome browser navigate to <install_directory>/index.html. At this point the application will load and all functionality will be available.
+2. Next, from your Google Chrome browser navigate to <install_directory>/index.html. At this point the front end of the application will load.
 
 # License:
 
