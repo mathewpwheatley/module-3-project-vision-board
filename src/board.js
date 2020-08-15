@@ -1,4 +1,4 @@
-import { BOARDS_URL } from "./index.js";
+import { BOARDS_URL, newGoalForm } from "./index.js";
 
 export function fetchBoard(boardId) {
   fetch(BOARDS_URL + "/" + boardId)
