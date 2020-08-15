@@ -34,9 +34,9 @@ The interactive frontend of this application is built on vanilla HTML and Javasc
 * Mathew Wheatley
 
 # Dependencies:
-Node Package Manager (NPM)
-local-web-server
-Google Chrome (80.0.3987.149)
+* Node Package Manager (NPM)
+* local-web-server
+* Google Chrome (80.0.3987.149)
 
 # Installation:
 Download this entire git repository to your computer and place in your desired install directory.
@@ -47,6 +47,7 @@ This project is hosted on Github Pages here: https://ckaiser258.github.io/Vision
 1. Make sure you've installed the backend repo for this application (located here: https://github.com/ckaiser258/visionboard-backend) and have followed the installation/running instructions.
 2. In your terminal, run `ws`to start up the local web server.
 3. Next, from your Google Chrome browser navigate to localhost:8000. At this point the front end of the application will load.
+
 NOTE: If you're planning on making changes to the backend repo and using that instead of the hosted backend, navigate to line 1 of index.js and comment it out, then comment IN line 2.
 
 # License:
