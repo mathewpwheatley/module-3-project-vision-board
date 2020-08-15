@@ -1,7 +1,10 @@
-const BASE_URL = "https://module-3-vision-board-backend.herokuapp.com"
-// const BASE_URL = "http://localhost:3000"
+import {fetchBoard, buildBoardForm} from './board.js'
+import {createOrEditGoal} from './goal.js'
+
+// const BASE_URL = "https://module-3-vision-board-backend.herokuapp.com"
+const BASE_URL = "http://localhost:3000"
 const USERS_URL = `${BASE_URL}/users`
-const BOARDS_URL = `${BASE_URL}/boards`
+export const BOARDS_URL = `${BASE_URL}/boards`
 const GOALS_URL = `${BASE_URL}/goals`
 
 const loginFormDiv = document.getElementById("login-form-div")
@@ -14,7 +17,7 @@ const cancelBtns = document.querySelectorAll(".cancel")
 const confirmSignup = document.getElementById("signup-submit")
 const confirmLogin = document.getElementById("login-submit")
 
-const newGoalForm = document.querySelector(".new-goal-container")
+export const newGoalForm = document.querySelector(".new-goal-container")
 const goalFormLabel = document.getElementById("form-label")
 const header = document.querySelector("header")
 const boardsBtn = document.getElementById("boardsbtn")
@@ -193,7 +196,7 @@ function logoutUser(navbarUsername) {
 }
 
 function buildBoardsList(boards) {
-  for(board of boards){
+  for(const board of boards){
     const item = document.createElement("li")
     item.innerHTML = `<a>○${board.title}</a>`
     item.setAttribute(`board-id`, board.id)
