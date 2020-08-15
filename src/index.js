@@ -31,6 +31,8 @@ newBoardBtn.style.display ="none"
 logoutBtn.style.display ="none"
 newGoalForm.style.padding = "25px"
 
+newBoardBtn.addEventListener("click", event => buildBoardForm())
+
 //////////////////////////
 // Error Rendering Start//
 //////////////////////////
