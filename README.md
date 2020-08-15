@@ -48,7 +48,7 @@ This project is hosted on Github Pages here: https://ckaiser258.github.io/Vision
 2. In your terminal, run `ws`to start up the local web server.
 3. Next, from your Google Chrome browser navigate to localhost:8000. At this point the front end of the application will load.
 
-NOTE: If you're planning on making changes to the backend repo and using that instead of the hosted backend, navigate to line 1 of index.js and comment it out, then comment IN line 2.
+NOTE: If you're planning on making changes to the backend repo and/or using it instead of the hosted backend: Open this repo in your text editor and comment out line 1 of index.js, then comment IN line 2.
 
 # License:
 
