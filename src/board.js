@@ -1,4 +1,7 @@
-function fetchBoard(boardId) {
+import { BOARDS_URL, GOALS_URL, fetchUser, buildErrorMsg, addBoardToList } from "./index.js";
+import { goalFormLabel, statusInput, submitButton } from "./goal.js";
+
+export function fetchBoard(boardId) {
   fetch(BOARDS_URL + "/" + boardId)
     .then((resp) => resp.json())
     .then((json) => buildBoardCard(json.data));
@@ -75,8 +78,63 @@ function buildBoardCard(board) {
   });
 }
 
-function buildBoardForm(boardId) {
-  // Create form
+const newGoalForm = document.querySelector(".new-goal-container")
+
+//Create goal form
+function createGoalCard(goal) {
+  const goalsSection = document.getElementById("notes");
+  const note = document.createElement("div");
+  const h2 = document.createElement("h2");
+  const p = document.createElement("p");
+  const h4 = document.createElement("h4");
+  const editButton = document.createElement("button");
+  const deleteButton = document.createElement("button");
+  const nameInput = document.getElementById("name")
+  const descriptionInput = document.getElementById("description")
+
+  editButton.innerText = "Edit";
+  deleteButton.innerText = "Delete";
+  editButton.style.marginRight = "5px";
+  deleteButton.style.marginLeft = "5px";
+  editButton.className = "togglebutton";
+  deleteButton.className = "togglebutton";
+
+  goalsSection.appendChild(note);
+  note.appendChild(h2);
+  note.appendChild(p);
+  note.appendChild(h4);
+  note.appendChild(deleteButton);
+  note.appendChild(editButton);
+
+  note.setAttribute("goal-id", goal.id);
+  h2.innerHTML = goal.title;
+  p.innerHTML = goal.content;
+  h4.innerHTML = goal.status;
+
+  deleteButton.addEventListener("click", function () {
+    note.remove();
+    return fetch(`${GOALS_URL}/${goal.id}`, {
+      method: "DELETE",
+    }).then((response) =>
+      response.json().then((json) => {
+        return json;
+      })
+    );
+  });
+
+  editButton.addEventListener("click", function() {
+    newGoalForm.hidden = false
+    goalFormLabel.innerHTML = `<strong>Edit ${goal.title}</strong>`
+    nameInput.value = goal.title
+    descriptionInput.value = goal.content
+    statusInput.value = goal.status
+    submitButton.setAttribute("goal-id", goal.id)
+    submitButton.value = "Complete Edit"
+  })
+}
+
+export function buildBoardForm(boardId) {
+  // Create board form
   const boardForm = document.createElement("form");
   boardForm.id = "board-form";
   boardForm.className = "form-container"
@@ -208,7 +266,7 @@ function createEditBoard(event) {
           event.target.form.remove();
           buildBoardCard(json.data);
         }
-      });
+      }).then(location.reload());
   } else {
     // Create new board fetch request
     options.method = "POST";
@@ -222,7 +280,9 @@ function createEditBoard(event) {
           buildErrorMsg(json)
         } else if (json.data.id) {
           event.target.form.remove();
-          buildBoardCard(json.data);
+          buildBoardCard(json.data)
+          fetchUser(JSON.parse(localStorage.user).attributes.email);
+          addBoardToList(json.data)
         }
       });
   }

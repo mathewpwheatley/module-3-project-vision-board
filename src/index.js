@@ -1,8 +1,11 @@
+import {fetchBoard, buildBoardForm} from './board.js'
+import {createOrEditGoal} from './goal.js'
+
 const BASE_URL = "https://module-3-vision-board-backend.herokuapp.com"
 // const BASE_URL = "http://localhost:3000"
 const USERS_URL = `${BASE_URL}/users`
-const BOARDS_URL = `${BASE_URL}/boards`
-const GOALS_URL = `${BASE_URL}/goals`
+export const BOARDS_URL = `${BASE_URL}/boards`
+export const GOALS_URL = `${BASE_URL}/goals`
 
 const loginFormDiv = document.getElementById("login-form-div")
 const signupFormDiv = document.getElementById("signup-form-div")
@@ -15,7 +18,6 @@ const confirmSignup = document.getElementById("signup-submit")
 const confirmLogin = document.getElementById("login-submit")
 
 const newGoalForm = document.querySelector(".new-goal-container")
-const goalFormLabel = document.getElementById("form-label")
 const header = document.querySelector("header")
 const boardsBtn = document.getElementById("boardsbtn")
 const menuList = document.getElementById("menuList")
@@ -28,10 +30,12 @@ newBoardBtn.style.display ="none"
 logoutBtn.style.display ="none"
 newGoalForm.style.padding = "25px"
 
+newBoardBtn.addEventListener("click", event => buildBoardForm())
+
 //////////////////////////
 // Error Rendering Start//
 //////////////////////////
-function buildErrorMsg(data) {
+export function buildErrorMsg(data) {
   // signupForm.reset();
   let errors = data["errors"];
   for (const error of errors) {
@@ -77,7 +81,7 @@ function handleSignup(e) {
 
 //Fetches
 //recieve user email from login handler and fetch user data, send to loginUser
-async function fetchUser(email) {
+export async function fetchUser(email) {
   let configObject = {
     method: "POST",
     headers: {
@@ -96,9 +100,13 @@ async function fetchUser(email) {
       } else {
         loginForm.reset();
         loginFormDiv.style.display = "none";
-        localStorage.user = JSON.stringify(json.data);
+        storeUser(json.data)
       }
     });
+}
+
+function storeUser(userData){
+  localStorage.user = JSON.stringify(userData);
 }
 
 function fetchSignupUser(firstName, lastName, email) {
@@ -136,7 +144,7 @@ function renderUser() {
   if (JSON.parse(localStorage.user).attributes.boards.length > 0) {
     fetchBoard(JSON.parse(localStorage.user).attributes.boards[0].id);
   } else {
-    buildBoardForm();
+    buildBoardForm()
   }
   // Update nav bar
   changeNavbar(JSON.parse(localStorage.user));
@@ -193,7 +201,7 @@ function logoutUser(navbarUsername) {
 }
 
 function buildBoardsList(boards) {
-  for(board of boards){
+  for(const board of boards){
     const item = document.createElement("li")
     item.innerHTML = `<a>○${board.title}</a>`
     item.setAttribute(`board-id`, board.id)
@@ -202,6 +210,17 @@ function buildBoardsList(boards) {
     })
     boardsList.appendChild(item)
   }
+}
+
+export function addBoardToList(board) {
+  const item = document.createElement("li")
+  console.log(board)
+    item.innerHTML = `<a>○${board.attributes.title}</a>`
+    item.setAttribute(`board-id`, board.id)
+    item.addEventListener("click", function(event) {
+      fetchBoard(event.target.parentElement.getAttribute("board-id"))
+    })
+  boardsList.appendChild(item)
 }
 
 document.addEventListener("DOMContentLoaded", function () {

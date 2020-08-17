@@ -1,7 +1,12 @@
-const statusInput = document.getElementById("status")
+import {GOALS_URL} from './index.js'
+import {fetchBoard} from './board.js'
+
+export const statusInput = document.getElementById("status")
 statusInput.style.margin = "25px"
-const submitButton = document.getElementById("submit-button")
+export const submitButton = document.getElementById("submit-button")
 const newGoalEditButton = document.getElementById("cancel-button")
+const newGoalForm = document.querySelector(".new-goal-container")
+export const goalFormLabel = document.getElementById("form-label")
 
 newGoalEditButton.addEventListener("click", function(event) {
   event.preventDefault();
@@ -9,59 +14,7 @@ newGoalEditButton.addEventListener("click", function(event) {
   newGoalForm.hidden = true
 })
 
-function createGoalCard(goal) {
-  const goalsSection = document.getElementById("notes");
-  const note = document.createElement("div");
-  const h2 = document.createElement("h2");
-  const p = document.createElement("p");
-  const h4 = document.createElement("h4");
-  const editButton = document.createElement("button");
-  const deleteButton = document.createElement("button");
-  const nameInput = document.getElementById("name")
-  const descriptionInput = document.getElementById("description")
-
-  editButton.innerText = "Edit";
-  deleteButton.innerText = "Delete";
-  editButton.style.marginRight = "5px";
-  deleteButton.style.marginLeft = "5px";
-  editButton.className = "togglebutton";
-  deleteButton.className = "togglebutton";
-
-  goalsSection.appendChild(note);
-  note.appendChild(h2);
-  note.appendChild(p);
-  note.appendChild(h4);
-  note.appendChild(deleteButton);
-  note.appendChild(editButton);
-
-  note.setAttribute("goal-id", goal.id);
-  h2.innerHTML = goal.title;
-  p.innerHTML = goal.content;
-  h4.innerHTML = goal.status;
-
-  deleteButton.addEventListener("click", function () {
-    note.remove();
-    return fetch(`${GOALS_URL}/${goal.id}`, {
-      method: "DELETE",
-    }).then((response) =>
-      response.json().then((json) => {
-        return json;
-      })
-    );
-  });
-
-  editButton.addEventListener("click", function() {
-    newGoalForm.hidden = false
-    goalFormLabel.innerHTML = `<strong>Edit ${goal.title}</strong>`
-    nameInput.value = goal.title
-    descriptionInput.value = goal.content
-    statusInput.value = goal.status
-    submitButton.setAttribute("goal-id", goal.id)
-    submitButton.value = "Complete Edit"
-  })
-}
-
-function createOrEditGoal() {
+export function createOrEditGoal() {
   newGoalForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const goal = {
